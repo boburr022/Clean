@@ -13,7 +13,7 @@
                     <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="control-group mb-4">
-                            <textarea class="form-control p-2" rows="3" name="title" value="{{old('title')}}" placeholder="Sarlavha"></textarea>
+                            <textarea class="form-control p-2" rows="3" name="title" placeholder="Sarlavha">{{old('title')}}</textarea>
                             @error('title')
                             <p class="help-block text-danger">{{$message}}</p>
                             @enderror
@@ -23,13 +23,13 @@
                         {{-- placeholder="Rasm" />--}}
                         {{-- </div>--}}
                         <div class="control-group mb-4">
-                            <textarea class="form-control p-2" rows="3" name="short_content" value="{{old('short_content')}}" placeholder="Qisqacha Mazmun"></textarea>
+                            <textarea class="form-control p-2" rows="3" name="short_content" placeholder="Qisqacha Mazmun">{{old('short_content')}}</textarea>
                             @error('short_content')
                             <p class="help-block text-danger">{{$message}}</p>
                             @enderror
                         </div>
                         <div class="control-group mb-4">
-                            <textarea class="form-control p-4" rows="6" name="Content" value="{{old('Content')}}" placeholder="Ma'qola"></textarea>
+                            <textarea class="form-control p-4" rows="6" name="Content" placeholder="Ma'qola">{{old('Content')}}</textarea>
                             @error('Content')
                             <p class="help-block text-danger">{{$message}}</p>
                             @enderror
