@@ -18,10 +18,12 @@
                             <p class="help-block text-danger">{{$message}}</p>
                             @enderror
                         </div>
-                        {{-- <div class="control-group">--}}
-                        {{-- <input name="photo" type="file" class="form-control p-4" id="subject"--}}
-                        {{-- placeholder="Rasm" />--}}
-                        {{-- </div>--}}
+                        <div class="control-group mb-4">
+                            <input name="photo" type="file" class="form-control p-4" id="subject" placeholder="Rasm" />
+                            @error('photo')
+                            <p class="help-block text-danger">{{$message}}</p>
+                            @enderror
+                        </div>
                         <div class="control-group mb-4">
                             <textarea class="form-control p-2" rows="3" name="short_content" placeholder="Qisqacha Mazmun">{{old('short_content')}}</textarea>
                             @error('short_content')

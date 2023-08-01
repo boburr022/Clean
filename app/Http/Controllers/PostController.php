@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -21,13 +22,11 @@ class PostController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'short_content' => 'required',
-            'Content' => 'required',
-        ]);
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('post-photos');
+        }
 
         $posts = Post::create([
             'title' => $request->title,

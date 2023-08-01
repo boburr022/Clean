@@ -6,12 +6,19 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StorePostRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+
+    public function attributes()
+    {
+        return [
+            'title' => 'Sarvalha',
+            'short_content' => 'Qisqacha mazmun',
+            'Content' => 'Ma\'qola',
+        ];
+    }
+
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +29,10 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required',
+            'short_content' => 'required',
+            'Content' => 'required',
+            'photo' => 'nullable|image',
         ];
     }
 }
