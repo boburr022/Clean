@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -38,21 +39,42 @@ class PostController extends Controller
     }
 
 
-    public function show(string $id)
+    public function show(Post $post)
     {
-        return view('posts.show');
+        return view('posts.show')->with([
+            'post' => $post,
+            'recent_posts' => Post::latest()->get()->except($post->id)->take(5)
+        ]);
     }
 
 
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        //
+        return view('posts.edit')->with([
+            'post' => $post
+        ]);
     }
 
 
-    public function update(Request $request, string $id)
+    public function update(StorePostRequest $request, Post $post)
+
     {
-        //
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('post-photos');
+
+            if (isset($post->photo)) {
+                Storage::delete($post->photo);
+            }
+        }
+
+        $post->update([
+            'title' => $request->title,
+            'Content' => $request->Content,
+            'short_content' => $request->short_content,
+            'photo' => $path ??  $post->photo
+        ]);
+
+        return redirect()->route('posts.show', ['post' => $post->id]);
     }
 
 

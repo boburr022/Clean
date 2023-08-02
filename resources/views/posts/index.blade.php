@@ -19,8 +19,7 @@
                     <div class="position-relative mb-4">
                         <img class="img-fluid rounded w-100" src="{{asset('storage/'.$post->photo)}}" alt="">
                         <div class="blog-date">
-                            <h4 class="font-weight-bold mb-n1">01</h4>
-                            <small class="text-white text-uppercase">Jan</small>
+                            <small class="text-white text-uppercase">{{ $post->created_at->format('Y') }}</small>
                         </div>
                     </div>
                     <div class="d-flex mb-2">
@@ -29,8 +28,8 @@
                         <a class="text-secondary text-uppercase font-weight-medium" href="">Cleaning</a>
                     </div>
                     <h5 class="font-weight-medium mb-2">{{$post->title}}</h5>
-                    <p class="mb-4">{{$post->Content}}</p>
-                    <a class="btn btn-sm btn-primary py-2" href="{{ Route('posts.show', ['post' => $post->id]) }}   ">O'qish</a>
+                    <p class="mb-4">{{$post->short_content}}</p>
+                    <a class="btn btn-sm btn-primary py-2" href="{{ Route('posts.show', ['post' => $post->id]) }}">O'qish</a>
                 </div>
                 @endforeach
             </div>
