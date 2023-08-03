@@ -10,13 +10,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="text-right">
-                        <a class="btn btn-sm btn-outline-secondary" href="{{route('posts.edit',['post'=>$post->id])}}">
+                    <div class="row mb-4">
+                        <a class="btn btn-sm btn-outline-dark mr-2" href="{{route('posts.edit',['post'=>$post->id])}}">
                             O'zgartirish
                         </a>
-                        <a class="btn btn-sm btn-outline-danger" href="/">
-                            O'chrish
-                        </a>
+                        <form action="{{route('posts.destroy',['post'=>$post->id])}}" method="POST" onsubmit="return confirm('Are you sure you wish to delete?');">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-sm btn-outline-danger" type="submit">
+                                O'chirish
+                            </button>
+                        </form>
                     </div>
                     <div class="mb-5">
                         <div class="d-flex mb-2">

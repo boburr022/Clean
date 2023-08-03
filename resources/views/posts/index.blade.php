@@ -32,6 +32,8 @@
                     <a class="btn btn-sm btn-primary py-2" href="{{ Route('posts.show', ['post' => $post->id]) }}">O'qish</a>
                 </div>
                 @endforeach
+
+                {{$posts->links()}}
             </div>
         </div>
     </div>
